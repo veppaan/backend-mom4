@@ -7,6 +7,14 @@ require("dotenv").config();
 ///User model
 const User = require("../models/User");
 
+//Connect to MongoDB
+mongoose.set("strictQuery", false);
+mongoose.connect(process.env.DATABASE).then(() => {
+    console.log("Connected to MongoDB");
+}).catch((error) => {
+    console.error("Error connecting to database...");
+});
+
 //Add user
 router.post("/register", async(req, res) => {
     try {
