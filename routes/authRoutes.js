@@ -59,8 +59,11 @@ router.post("/login", async(req, res) =>{
             //Create JWT
             const payload = { username: username };
             const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' }); 
+            //Hämta användare utan lösenordet
+            user = await User.findOne({ username: username}), {password:0};
             const response = {
                 message: "User logged in!",
+                user: user,
                 token: token
             }
             res.status(200).json({ response })
