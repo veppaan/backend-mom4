@@ -1,9 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
+
+//Tillåt cors
+router.use(cors());
 ///User model
 const User = require("../models/User");
 
@@ -60,7 +64,7 @@ router.post("/login", async(req, res) =>{
             const payload = { username: username };
             const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' }); 
             //Hämta användare utan lösenordet
-            user = await User.findOne({ username: username}), {password:0};
+            const user = await User.findOne({ username: username }, { password: 0 });
             const response = {
                 message: "User logged in!",
                 user: user,
