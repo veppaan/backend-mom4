@@ -19,6 +19,12 @@ mongoose.connect(process.env.DATABASE).then(() => {
     console.error("Error connecting to database...");
 });
 
+
+//GET
+router.get("/", (req, res) => {
+    res.json({ message: "Hello and welcome to this API!"});
+}
+);
 //Add user
 router.post("/register", async(req, res) => {
     try {
