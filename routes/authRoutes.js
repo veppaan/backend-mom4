@@ -3,12 +3,9 @@ const router = express.Router();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const app = express();
 require("dotenv").config();
 
 
-//Tillåt cors
-app.use(cors());
 ///User model
 const User = require("../models/User");
 
