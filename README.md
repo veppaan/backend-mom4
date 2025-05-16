@@ -11,3 +11,7 @@ Det tar emot ett username och password i form av strängar.
 För att logga in:
 POST "/api/login"
 Tar också emot username och password exakt i den form som de registrerades som.
+
+Skyddad sida:
+GET "/api/protected"
+Tar emot och kollar giltig token
