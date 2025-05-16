@@ -82,5 +82,25 @@ router.post("/login", async(req, res) =>{
     }
 });
 
+//Protected
+router.get("/protected", authenticateToken, (req, res) => {
+    res.json({ message: "Skyddad route!"});
+});
+
+//Validate token
+function authenticateToken(req, res, next){
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; //Token
+
+    if(token == null) return res.status(401).json({ message: "Not authorized for this route - token missing!"});
+
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, username) =>{
+        if(err) return res.status(403).json({ message: "Invalid JWT"});
+
+        req.username = username;
+        next();
+    })
+}
+
 //Returnera till anropet
 module.exports = router;
