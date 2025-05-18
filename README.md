@@ -2,7 +2,7 @@ Vera Kippel veki2400
 
 Detta moment är ett API som innehåller funktonalitet (POST) för registrering och inloggning. Detta har skapats med hjälp av JWT.
 
-Adnvändarnamnet måste vara unikt för att registreras i databasen (MongoDB) och lösenordet blir hashad med bcrypt.
+Användarnamnet måste vara unikt för att registreras i databasen (MongoDB) och lösenordet blir hashad med bcrypt.
 
 För att registrera:
 POST "/api/register"
