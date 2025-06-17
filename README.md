@@ -14,4 +14,4 @@ Tar också emot username och password exakt i den form som de registrerades som.
 
 Skyddad sida:
 GET "/api/protected"
-Tar emot och kollar giltig token
+Tar emot och kollar giltig token samt hämtar alla användarnamn som är registrerade
