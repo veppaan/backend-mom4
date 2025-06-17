@@ -14,8 +14,14 @@ app.use(cors());
 app.use("/api", authRoutes);
 
 //Protected routes
-app.get("/api/protected", authenticateToken, (req, res) => {
-    res.json({ message: "Skyddad route!"});
+router.get("/protected", authenticateToken, async (req, res) => {
+    try{
+        const allUsernames = await User.find({}, {username: 1, _id: 0});
+        res.json(allUsernames);
+    }catch (error){
+        res.status(500).json({message: "Error when fetching usernames from database", error: error})
+    }
+    //res.json({ message: "Skyddad route!"});
 });
 //Validate token
 function authenticateToken(req, res, next){
