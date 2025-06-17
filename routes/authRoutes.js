@@ -85,7 +85,7 @@ router.post("/login", async(req, res) =>{
 //Protected
 router.get("/protected", authenticateToken, async (req, res) => {
     try{
-        const allUsernames = await User.find({}, {username: 1, _id: 0, password: 0});
+        const allUsernames = await User.find({}, {username: 1, _id: 0});
         res.json(allUsernames);
     }catch (error){
         res.status(500).json({message: "Error when fetching usernames from database", error: error})
