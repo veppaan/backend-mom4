@@ -14,7 +14,7 @@ app.use(cors());
 app.use("/api", authRoutes);
 
 //Protected routes
-router.get("/protected", authenticateToken, async (req, res) => {
+app.get("/protected", authenticateToken, async (req, res) => {
     try{
         const allUsernames = await User.find({}, {username: 1, _id: 0});
         res.json(allUsernames);
