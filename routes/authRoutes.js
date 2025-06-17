@@ -83,8 +83,14 @@ router.post("/login", async(req, res) =>{
 });
 
 //Protected
-router.get("/protected", authenticateToken, (req, res) => {
-    res.json({ message: "Skyddad route!"});
+router.get("/protected", authenticateToken, async (req, res) => {
+    try{
+        const allUsernames = await User.find({}, "username");
+        res.json(allUsernames);
+    }catch (error){
+        res.status(500).json({message: "Error when fetching usernames from database", error: error})
+    }
+    //res.json({ message: "Skyddad route!"});
 });
 
 //Validate token
