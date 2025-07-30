@@ -23,6 +23,15 @@ app.get("/protected", authenticateToken, async (req, res) => {
     }
     //res.json({ message: "Skyddad route!"});
 });
+
+app.get("/token", authenticateToken, async (req, res) => {
+    try{
+        res.status(200).json({message: "Correct token"})
+    }catch (error){
+        res.status(500).json({message: "Something went wrong with token", error: error})
+    }
+    //res.json({ message: "Skyddad route!"});
+});
 //Validate token
 function authenticateToken(req, res, next){
     const authHeader = req.headers['authorization'];
